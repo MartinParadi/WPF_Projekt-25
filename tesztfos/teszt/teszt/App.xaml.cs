@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace _20_WPF_Projekt
+namespace teszt
 {
     /// <summary>
     /// Interaction logic for App.xaml
