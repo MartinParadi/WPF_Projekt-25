@@ -4,10 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="JsonReaderApp.MainWindow"
         Title="Car Information" Height="350" Width="525">
     <Grid>
-        <ListBox x:Name="CarListBox" HorizontalAlignment="Left" Height="250" Margin="10,10,0,0" VerticalAlignment="Top" Width="480" >
-          <ListBox Height="100" Width="100" d:ItemsSource="{d:SampleData ItemCount=5}"/>
-     
+        <ListBox x:Name="CarListBox" HorizontalAlignment="Left" Height="178" Margin="10,10,0,0" VerticalAlignment="Top" Width="469" SelectionChanged="CarListBox_SelectionChanged" >
+            <ListBox Height="100" Width="100"/>
+
         </ListBox>
+        <ListBox Name="lb_manufacturer_select" Margin="124,214,161,37" SelectionChanged="ListBox_SelectionChanged"/>
+        <Label Content="Select Manufacturer" HorizontalAlignment="Left" Margin="10,243,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
 

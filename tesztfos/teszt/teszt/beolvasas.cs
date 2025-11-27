@@ -2,11 +2,13 @@
 using System.IO;
 using System.Text.Json;
 using System.Windows;
+using teszt;
 
 namespace JsonReaderApp
 {
     public partial class MainWindow : Window
     {
+        public List<Car> cars = new List<Car>();
         private void LoadCars()
         {
             try
@@ -26,11 +28,19 @@ namespace JsonReaderApp
                     PropertyNameCaseInsensitive = true
                 };
 
-                List<Car> cars = JsonSerializer.Deserialize<List<Car>>(json, options);
+                cars = JsonSerializer.Deserialize<List<Car>>(json, options);
 
                 foreach (var car in cars)
                 {
                     CarListBox.Items.Add(car.Manufacturer);
+                }
+
+                foreach (var car in cars)
+                {
+                    if (!(lb_manufacturer_select.Items.Contains(car.Manufacturer)))
+                    {
+                        lb_manufacturer_select.Items.Add(car.Manufacturer);
+                    }
                 }
             }
             catch (JsonException ex)

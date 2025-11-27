@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text.Json;
 using System.Windows;
+using teszt;
 
 namespace JsonReaderApp
 {
@@ -11,22 +12,45 @@ namespace JsonReaderApp
         {
             InitializeComponent();
             LoadCars();
+            
         }
 
+        private void ListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            string selection = lb_manufacturer_select.SelectedValue.ToString();
+            CarListBox.Items.Clear();
+            CarListBox.Items.Add(selection);
+            foreach (var car in cars)
+            {
+                if (car.Manufacturer == selection)
+                {
+                    if (!CarListBox.Items.Contains(car.Model))
+                    {
+                        CarListBox.Items.Add($"{car.Model}");
+                    }
+                }
+            }
+        }
+
+        private void CarListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            var selection = CarListBox.SelectedItem;
+            if (selection != null)
+            {
+                CarListBox.Items.Clear();
+                CarListBox.Items.Add(selection);
+                MessageBox.Show($"{selection}");
+                foreach (var car in cars)
+                {
+                    if (car.Model == selection.ToString())
+                    {
+                        MessageBox.Show($"{selection}");
+                        CarListBox.Items.Add($"{car.Manufacturer} | {car.Model} | {car.Year} | {car.Class} | {car.Displ} | {car.Cyl} | {car.Trans} | {car.Drv}");
+                    }
+                }
+            }
+        }
     }
 
-    public class Car
-    {
-        public string Manufacturer { get; set; }
-        public string Model { get; set; }
-        public double Displ { get; set; }
-        public int Year { get; set; }
-        public int Cyl { get; set; }
-        public string Trans { get; set; }
-        public string Drv { get; set; }
-        public int Cty { get; set; }
-        public int Hwy { get; set; }
-        public string Fl { get; set; }
-        public string Class { get; set; }
-    }
+    
 }
